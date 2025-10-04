@@ -1,0 +1,40 @@
+:root {
+    --primary-color: #FEFAE0;
+    --secondary-color: #616C38;
+    --accent-color: #283618;
+
+    /* Card color scheme */
+    --color-1: ;
+    --color-2: ;
+    --extra-color: ; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 15%;
+    width: 100%;
+    background: var(--secondary-color);
+    box-shadow: 2px 4px 8px var(--accent-color);
+}
+
+body {
+    height: 100vh;
+    background: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17%;
+}
+
+.board {
+    height: 500px;
+    width: 700px;
+    background: var(--secondary-color);
+    border: 9px double var(--accent-color);
+    border-radius: 15px;
+}
