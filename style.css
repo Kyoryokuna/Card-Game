@@ -36,7 +36,7 @@ header {
 ul {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 25px;
 }
 
 a {
@@ -48,20 +48,6 @@ a {
 a:hover {
     color: plum;
     opacity: 0.8;
-}
-
-.section-3 {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.section-3 img {
-    height: 60px;
-    width: 60px;
-    border-radius: 90px;
 }
 
 body {
@@ -97,4 +83,12 @@ body {
 .card:hover {
     opacity: 0.9;
     cursor: pointer;
+}
+
+.active {
+    box-shadow: inset 2px 4px 15px black;
+}
+
+.toggled {
+    box-shadow: 2px 4px var(--accent-color);
 }
