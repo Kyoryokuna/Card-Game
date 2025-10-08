@@ -78,6 +78,14 @@ body {
     height: 100%;
     background: var(--primary-color);
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card span {
+    color: var(--accent-color);
+    display: none;
 }
 
 .card:hover {
@@ -89,6 +97,14 @@ body {
     box-shadow: inset 2px 4px 15px black;
 }
 
+.active span {
+    display: contents;
+}
+
 .toggled {
-    box-shadow: 2px 4px var(--accent-color);
+    box-shadow: 2px 4px 6px var(--accent-color);
+}
+
+.toggled span{
+    display: contents;
 }

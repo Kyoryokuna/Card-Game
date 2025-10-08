@@ -2,7 +2,7 @@ const board = document.querySelector(".board")
 const cards = document.querySelectorAll(".card")
 const notifs = document.querySelector("#notify")
 
-const currentPair = ["",""]
+let currentPair = ["",""]
 let c1 = ""
 let c2 = ""
 let correctPairs = 0
@@ -29,33 +29,44 @@ const CheckWin = function() {
 }
 
 const CheckPair = function(card) {
-    if (currentPair[1] = "") {
+    if (card.classList.contains("toggled") || card.classList.contains("active") || c2 !== "") return; 
+
+    if (currentPair[0] === "") {
         c1 = card
-        c1.UpdateState(c1, "toggled")
-        currentPair[1] = c1
+        console.log(c1)
+        UpdateState(c1, "toggled")
+        currentPair[0] = c1
     }else{
         c2 = card
-        c2.UpdateState(c2, "toggled")
-        currentPair[2] = c2
+        console.log(c2)
+        UpdateState(c2, "toggled")
+        currentPair[1] = c2
     }
 
-    if (currentPair[1] === currentPair[2]) {
+    if (!currentPair[0] || !currentPair[1]) return;
+
+    if (currentPair[0].dataset.image === currentPair[1].dataset.image) {
+        UpdateState(c1, "toggled")
+        UpdateState(c2, "toggled")
         console.log("A match has been found")
-        c1.Activate(c1, "active")
-        c2.Activate(c2, "active")
+        UpdateState(c1, "active")
+        UpdateState(c2, "active")
 
-        currentPair = ["",""]
-        correctPairs++
-        CheckWin()
-    }
-
-    if (currentPair[1] !== currentPair[2] && currentPair[2] !== "") {
+        notifs.textContent = "Correct"
+        setTimeout(() => {
+            ResetTurn()
+            correctPairs++
+            CheckWin()
+            notifs.textContent = `Matches: ${correctPairs}`
+        }, 800)
+    }else{
         notifs.textContent = "Incorrect pair "
         setTimeout(() => {
-            c1.UpdateState(c1, "toggled")
-            c2.UpdateState(c2, "toggled")
+            UpdateState(c1, "toggled")
+            UpdateState(c2, "toggled")
             ResetTurn()
-        },2000)
+            notifs.textContent = `Matches: ${correctPairs}`
+        },800)
     }
 }
 
