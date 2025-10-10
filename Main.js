@@ -12,7 +12,11 @@ const UpdateState = function(card, state) {
 }
 
 const ResetBoard = function() {
-    
+    cards.forEach((card) => {
+        UpdateState(card,"active")
+    })
+    correctPairs = 0
+    ResetTurn()
 }
 
 const ResetTurn = function() {
@@ -22,9 +26,10 @@ const ResetTurn = function() {
 }
 
 const CheckWin = function() {
+    console.log(correctPairs)
     if (correctPairs === 10) {
         notifs.textContent = "Congratulations you won"
-        ResetBoard()
+        setTimeout(ResetBoard(),2000)
     }
 }
 
@@ -53,10 +58,9 @@ const CheckPair = function(card) {
         UpdateState(c2, "active")
 
         notifs.textContent = "Correct"
+        correctPairs += 1
         setTimeout(() => {
             ResetTurn()
-            correctPairs++
-            CheckWin()
             notifs.textContent = `Matches: ${correctPairs}`
         }, 800)
     }else{
@@ -68,6 +72,7 @@ const CheckPair = function(card) {
             notifs.textContent = `Matches: ${correctPairs}`
         },800)
     }
+    CheckWin()
 }
 
 cards.forEach((card) => {
